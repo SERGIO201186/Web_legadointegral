@@ -167,7 +167,13 @@
       letter-spacing:0.02em;
       transition:background 0.25s ease, transform 0.25s ease;
     }
+  }
+  @media(min-width:900px) and (hover:hover) and (pointer:fine){
     .nav-cta:hover{background:var(--cobre-claro);transform:translateY(-2px);}
+  }
+  @media(min-width:900px){
+    /* wins over the :hover lift above when pressed mid-hover (equal specificity, later in source) */
+    .nav-cta:active{transform:scale(0.97);}
   }
   nav{display:none;}
   @media(min-width:900px){nav{display:block;}}
@@ -181,9 +187,10 @@
     border:1px solid var(--hueso);
     color:var(--hueso);
     padding:9px 16px;
-    transition:background 0.25s ease, color 0.25s ease;
+    transition:background 0.25s ease, color 0.25s ease, transform 0.15s ease-out;
   }
   .menu-btn:hover{background:var(--hueso);color:var(--indigo);}
+  .menu-btn:active{transform:scale(0.96);}
   @media(min-width:900px){.menu-btn{display:none;}}
 
   /* ===================== HERO ===================== */
@@ -240,11 +247,15 @@
     transition:transform 0.2s ease, background 0.2s ease, color 0.2s ease;
   }
   .btn-primary{background:var(--cobre);color:var(--hueso);}
-  .btn-primary:hover{background:var(--cobre-claro);transform:translateY(-2px);}
   .btn-ghost{border:1px solid var(--hueso);color:var(--hueso);}
-  .btn-ghost:hover{background:var(--hueso);color:var(--indigo);transform:translateY(-2px);}
   .btn-ghost-dark{border:1px solid var(--carbon);color:var(--carbon);}
-  .btn-ghost-dark:hover{background:var(--carbon);color:var(--hueso);transform:translateY(-2px);}
+  @media(hover:hover) and (pointer:fine){
+    .btn-primary:hover{background:var(--cobre-claro);transform:translateY(-2px);}
+    .btn-ghost:hover{background:var(--hueso);color:var(--indigo);transform:translateY(-2px);}
+    .btn-ghost-dark:hover{background:var(--carbon);color:var(--hueso);transform:translateY(-2px);}
+  }
+  /* wins over the :hover lift above when pressed mid-hover (equal specificity, later in source) */
+  .btn:active{transform:scale(0.97);}
 
   .hero-stats{
     display:flex;
@@ -634,7 +645,9 @@
     border-radius:30px;
     transition:background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
   }
-  .f360-badge:hover{background:rgba(246,241,231,0.14);transform:translateY(-1px);}
+  @media(hover:hover) and (pointer:fine){
+    .f360-badge:hover{background:rgba(246,241,231,0.14);transform:translateY(-1px);}
+  }
   .f360-badge .mark{
     width:32px;height:32px;
     border-radius:50%;
@@ -715,7 +728,9 @@
     background:var(--carbon);
     transform:translateY(-50%) rotate(45deg);
   }
-  .wa-float:hover .wa-tooltip{opacity:1;transform:translateX(0);}
+  @media(hover:hover) and (pointer:fine){
+    .wa-float:hover .wa-tooltip{opacity:1;transform:translateX(0);}
+  }
   .wa-btn{
     width:60px;height:60px;
     border-radius:50%;
@@ -735,7 +750,11 @@
     animation:wa-pulse 2.4s ease-out infinite;
     z-index:-1;
   }
-  .wa-btn:hover{transform:scale(1.08) translateY(-2px);box-shadow:0 14px 34px rgba(37,211,102,0.55);}
+  @media(hover:hover) and (pointer:fine){
+    .wa-btn:hover{transform:scale(1.08) translateY(-2px);box-shadow:0 14px 34px rgba(37,211,102,0.55);}
+  }
+  /* wins over the :hover lift above when pressed mid-hover (equal specificity, later in source) */
+  .wa-btn:active{transform:scale(0.94);}
   .wa-btn svg{width:30px;height:30px;}
   @keyframes wa-pulse{
     0%{opacity:0.55;transform:scale(1);}
