@@ -303,29 +303,29 @@
   }
   .flame-glow{
     filter:drop-shadow(0 0 22px rgba(181,101,45,0.5));
-    animation:glow-pulse 4.5s ease-in-out infinite, crossfade-logo 13s ease-in-out infinite;
+    animation:glow-pulse 4.5s ease-in-out infinite, crossfade-logo 10s ease-in-out infinite;
   }
   .peace-layer{
     filter:drop-shadow(0 0 20px rgba(214,142,92,0.35));
-    animation:crossfade-peace 13s ease-in-out infinite;
+    animation:crossfade-peace 10s ease-in-out infinite;
   }
   @keyframes glow-pulse{
     0%,100%{transform:scale(1);filter:drop-shadow(0 0 22px rgba(181,101,45,0.5));}
     50%{transform:scale(1.025);filter:drop-shadow(0 0 30px rgba(214,142,92,0.65));}
   }
   @keyframes crossfade-logo{
-    0%,42%{opacity:1;}
-    50%,92%{opacity:0;}
+    0%,35%{opacity:1;}
+    45%,90%{opacity:0;}
     100%{opacity:1;}
   }
   @keyframes crossfade-peace{
-    0%,42%{opacity:0;}
-    50%,92%{opacity:1;}
+    0%,35%{opacity:0;}
+    45%,90%{opacity:1;}
     100%{opacity:0;}
   }
   @media(prefers-reduced-motion:reduce){
-    .flame-glow{animation:none !important;opacity:1;}
-    .peace-layer{animation:none !important;opacity:0;}
+    /* drop the scale-based glow-pulse (movement) but keep the opacity-only crossfade — that's content, not motion */
+    .flame-glow{animation:crossfade-logo 10s ease-in-out infinite;}
   }
 
   /* ===================== SECTION SHELL ===================== */
