@@ -267,19 +267,50 @@
   .symbol-stage svg{width:100%;max-width:420px;height:auto;}
   .flame-glow{
     filter:drop-shadow(0 0 18px rgba(181,101,45,0.55));
+    animation:glow-pulse 2.8s ease-in-out infinite;
   }
-  .flame-path{
-    transform-origin:150px 135px;
-    animation:flicker 4.5s ease-in-out infinite;
+  .flame-outer{
+    transform-origin:150px 196px;
+    animation:flicker-outer 3.6s ease-in-out infinite;
+  }
+  .flame-mid{
+    transform-origin:150px 190px;
+    animation:flicker-mid 3s ease-in-out infinite;
+    animation-delay:-0.4s;
+  }
+  .flame-inner{
+    transform-origin:150px 185px;
+    animation:flicker-inner 2.4s ease-in-out infinite;
+    animation-delay:-0.8s;
   }
   .node-dot{animation:pulse-node 3.2s ease-in-out infinite;}
   .node-line{
     stroke-dasharray:3 5;
     animation:dash 8s linear infinite;
   }
-  @keyframes flicker{
-    0%,100%{transform:scale(1) translateY(0);}
-    50%{transform:scale(1.035) translateY(-1.5px);}
+  @keyframes flicker-outer{
+    0%,100%{transform:scale(1,1) rotate(0deg);}
+    20%{transform:scale(1.015,0.985) rotate(-1deg);}
+    45%{transform:scale(0.985,1.03) rotate(1.2deg);}
+    70%{transform:scale(1.03,0.97) rotate(-0.6deg);}
+    85%{transform:scale(0.99,1.015) rotate(0.4deg);}
+  }
+  @keyframes flicker-mid{
+    0%,100%{transform:scale(1,1) rotate(0deg) translateX(0);}
+    25%{transform:scale(0.97,1.05) rotate(1.6deg) translateX(0.6px);}
+    50%{transform:scale(1.04,0.95) rotate(-1.4deg) translateX(-0.6px);}
+    75%{transform:scale(0.98,1.03) rotate(1deg) translateX(0.4px);}
+  }
+  @keyframes flicker-inner{
+    0%,100%{transform:scale(1,1) rotate(0deg);}
+    15%{transform:scale(1.06,0.92) rotate(-2deg);}
+    40%{transform:scale(0.94,1.08) rotate(2.4deg);}
+    60%{transform:scale(1.05,0.95) rotate(-1.6deg);}
+    80%{transform:scale(0.96,1.04) rotate(1.8deg);}
+  }
+  @keyframes glow-pulse{
+    0%,100%{opacity:1;}
+    50%{opacity:0.86;}
   }
   @keyframes pulse-node{
     0%,100%{opacity:0.55;r:3.2;}
@@ -289,7 +320,7 @@
     to{stroke-dashoffset:-40;}
   }
   @media(prefers-reduced-motion:reduce){
-    .flame-path,.node-dot,.node-line{animation:none !important;}
+    .flame-glow,.flame-outer,.flame-mid,.flame-inner,.node-dot,.node-line{animation:none !important;}
   }
 
   /* ===================== SECTION SHELL ===================== */
@@ -807,10 +838,10 @@
       <div class="symbol-stage reveal in">
         <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
           <circle cx="150" cy="150" r="128" stroke="#D68E5C" stroke-width="2" fill="none" opacity="0.5"/>
-          <g class="flame-path flame-glow">
-            <path d="M150,74 C141,86 130,96 132,112 C133,121 141,124 140,134 C139,145 126,146 123,162 C119,182 132,196 152,196 C172,196 186,182 182,162 C179,148 166,146 167,135 C168,126 178,122 179,110 C180,96 163,84 150,74 Z" fill="#B5652D"/>
-            <path d="M150,100 C144,109 137,116 138,127 C139,134 145,137 144,145 C143,153 133,155 131,167 C128,181 137,190 151,190 C165,190 175,180 172,167 C170,157 160,155 161,146 C162,139 170,136 170,127 C170,116 158,107 150,100 Z" fill="#D68E5C"/>
-            <path d="M150,126 C146,132 142,137 143,144 C144,149 148,151 147,157 C146,163 139,165 138,174 C136,184 142,190 151,190 C160,190 166,183 164,174 C163,167 156,165 157,158 C158,153 163,151 163,144 C163,136 155,130 150,126 Z" fill="#F0CFA3"/>
+          <g class="flame-glow">
+            <path class="flame-outer" d="M150,74 C141,86 130,96 132,112 C133,121 141,124 140,134 C139,145 126,146 123,162 C119,182 132,196 152,196 C172,196 186,182 182,162 C179,148 166,146 167,135 C168,126 178,122 179,110 C180,96 163,84 150,74 Z" fill="#B5652D"/>
+            <path class="flame-mid" d="M150,100 C144,109 137,116 138,127 C139,134 145,137 144,145 C143,153 133,155 131,167 C128,181 137,190 151,190 C165,190 175,180 172,167 C170,157 160,155 161,146 C162,139 170,136 170,127 C170,116 158,107 150,100 Z" fill="#D68E5C"/>
+            <path class="flame-inner" d="M150,126 C146,132 142,137 143,144 C144,149 148,151 147,157 C146,163 139,165 138,174 C136,184 142,190 151,190 C160,190 166,183 164,174 C163,167 156,165 157,158 C158,153 163,151 163,144 C163,136 155,130 150,126 Z" fill="#F0CFA3"/>
           </g>
           <path class="node-line" d="M150,213 Q133,207 116,236" stroke="#5B6653" stroke-width="1.4" fill="none" opacity="0.65"/>
           <path class="node-line" d="M150,213 Q142.5,207 135,254" stroke="#5B6653" stroke-width="1.4" fill="none" opacity="0.65"/>
